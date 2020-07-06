@@ -5,7 +5,7 @@ scores = [0] * 3000
 
 
 def json_read():
-    f = open('test_data.json', 'r', encoding='utf-8')
+    f = open('../test_data.json', 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         each_record = data[each]
@@ -16,7 +16,7 @@ def json_read():
             if not uploads:
                 continue
             else:
-                time = float(uploads[1]['upload_time'] - uploads[0]['upload_time'] / 1000)
+                time = float(uploads[-1]['upload_time'] - uploads[0]['upload_time'] / 1000)
             times[int(case_id)] += 1
             scores[int(case_id)] += time
     f.close()

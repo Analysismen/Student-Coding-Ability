@@ -97,4 +97,4 @@ def load(filepath, method):
 
 if __name__ == "__main__":
     # print(load("sample.json", "info"))
-    application(2908, "sample.json")
+    application(2908, "../sample.json")

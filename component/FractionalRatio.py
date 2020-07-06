@@ -7,7 +7,7 @@ scores = [0] * 3000
 
 
 def jsonRead():
-    f = open('test_data.json', 'r', encoding='utf-8')
+    f = open('../test_data.json', 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
