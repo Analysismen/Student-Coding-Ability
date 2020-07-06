@@ -20,10 +20,20 @@ dict={'user_id':[每一个题目[每一次提交]]}
 '''
 
 
-def application(case_id, filepath):
-    average_final_score = aver_final_score(case_id, filepath)
-    average_slope = aver_slope(case_id, filepath)
-
+def application(filepath):
+    dict_average_final_score = {}
+    dict_average_slope = {}
+    for i in range(0,3000):
+        average_final_score = aver_final_score(i, filepath)
+        average_slope = aver_slope(i, filepath)
+        if average_final_score != -1:
+            dict_average_final_score[str(i)] = round(average_final_score, 2)
+        if average_slope != -1:
+            dict_average_slope[str(i)] = round(average_slope, 2)
+        print(dict_average_final_score)
+        print(dict_average_slope)
+    print(dict_average_final_score)
+    print(dict_average_slope)
 
 def aver_final_score(case_id, filepath):
     final_score_list = []
@@ -34,8 +44,9 @@ def aver_final_score(case_id, filepath):
                 final_score = case[3]
                 final_score_list.append(final_score)
     # print(final_score_list)
+    if len(final_score_list) == 0:
+        return -1
     average_final_score = aver(final_score_list)
-    print(average_final_score)
     return average_final_score
 
 
@@ -52,10 +63,9 @@ def aver_slope(case_id, filepath):
         else:
             half_len = len(case) // 2 + 1
         slope_list.append(max(case[0:half_len], key=lambda x: x[3])[3] / half_len)  # 改为一半提交的最大得分
-
-    # print(slope_list)
+    if len(slope_list) == 0:
+        return -1                      
     average_slope = aver(slope_list)
-    print(average_slope)
     return average_slope
 
 
@@ -97,4 +107,4 @@ def load(filepath, method):
 
 if __name__ == "__main__":
     # print(load("sample.json", "info"))
-    application(2908, "../sample.json")
+    application("../sample.json")
