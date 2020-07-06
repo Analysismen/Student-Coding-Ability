@@ -19,6 +19,7 @@ def json_read():
 
 
 def main_thread():
+    json_read()
     dict_average_score = {}
     for i in range(3000):
         if times[i] != 0:

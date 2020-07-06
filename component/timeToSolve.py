@@ -23,6 +23,7 @@ def json_read():
 
 
 def main_thread():
+    json_read()
     dict_total_time = {}
     for i in range(3000):
         if times[i] != 0:
