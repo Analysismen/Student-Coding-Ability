@@ -23,7 +23,7 @@ dict={'user_id':[每一个题目[每一次提交]]}
 def application(filepath):
     dict_average_final_score = {}
     dict_average_slope = {}
-    for i in range(0,3000):
+    for i in range(2000,3000):
         average_final_score = aver_final_score(i, filepath)
         average_slope = aver_slope(i, filepath)
         if average_final_score != -1:
@@ -34,8 +34,8 @@ def application(filepath):
         #print(dict_average_slope)
     dict_average_final_score_after = min_max_normalize(dict_average_final_score)
     dict_average_slope_after = min_max_normalize(dict_average_slope)
-    print(dict_average_final_score)
-    print(dict_average_slope)
+    print(dict_average_final_score_after)
+    print(dict_average_slope_after)
 
 def min_max_normalize(dict_before):
     max_value = max(zip(dict_before.values(), dict_before.keys()))[0]
