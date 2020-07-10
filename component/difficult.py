@@ -23,19 +23,20 @@ dict={'user_id':[每一个题目[每一次提交]]}
 def application(filepath):
     dict_average_final_score = {}
     dict_average_slope = {}
-    for i in range(0,3000):
+    for i in range(0, 3000):
         average_final_score = aver_final_score(i, filepath)
         average_slope = aver_slope(i, filepath)
         if average_final_score != -1:
             dict_average_final_score[str(i)] = round(average_final_score, 2)
         if average_slope != -1:
             dict_average_slope[str(i)] = round(average_slope, 2)
-        #print(dict_average_final_score)
-        #print(dict_average_slope)
+        # print(dict_average_final_score)
+        # print(dict_average_slope)
     dict_average_final_score_after = min_max_normalize(dict_average_final_score)
     dict_average_slope_after = min_max_normalize(dict_average_slope)
     print(dict_average_final_score_after)
     print(dict_average_slope_after)
+
 
 def min_max_normalize(dict_before):
     max_value = max(zip(dict_before.values(), dict_before.keys()))[0]
@@ -43,7 +44,7 @@ def min_max_normalize(dict_before):
     max_sub = max_value - min_value
     dict_after = {}
     for key, val in dict_before.items():
-        val = 100*(val-min_value)/max_sub
+        val = 100 * (val - min_value) / max_sub
         dict_after[key] = val
     return dict_after
 
@@ -77,7 +78,7 @@ def aver_slope(case_id, filepath):
             half_len = len(case) // 2 + 1
         slope_list.append(max(case[0:half_len], key=lambda x: x[3])[3] / half_len)  # 改为一半提交的最大得分
     if len(slope_list) == 0:
-        return -1                      
+        return -1
     average_slope = aver(slope_list)
     return average_slope
 
