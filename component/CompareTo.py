@@ -1,6 +1,6 @@
 import json
 import component.averageScore as avg
-import component.difficult as diff
+import component.final_ScoreAndSlope as diff
 
 return_dict = {}
 
