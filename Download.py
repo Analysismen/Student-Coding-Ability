@@ -4,7 +4,7 @@ import os
 import string
 import zipfile
 
-f = open('test_data.json',encoding='utf-8')
+f = open('sample.json',encoding='utf-8')
 res = f.read()
 data = json.loads(res)   #加载json数据
 if not os.path.exists('.\\tmp'):

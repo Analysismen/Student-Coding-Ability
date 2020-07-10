@@ -4,3 +4,5 @@
 /venv
 component/__pycache__
 component/__init__.py
+data
+tmp
