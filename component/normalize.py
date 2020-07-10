@@ -4,7 +4,6 @@ def min_max_normalize(dict_before):
     max_sub = max_value - min_value
     dict_after = {}
     for key, val in dict_before.items():
-        val = 100*(val-min_value)/max_sub
+        val = round(100 * (val - min_value) / max_sub, 2)
         dict_after[key] = val
     return dict_after
-
