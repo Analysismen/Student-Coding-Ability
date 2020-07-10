@@ -55,18 +55,18 @@ def main_thread():
     for case_id in temp_case_list:
         diff_return[int(case_id)][6] = temp_return[case_id]
 
-    for item in diff_return:
-        num = avg_cal.aver(item)
-        for nums in item:
-            nums -= num
+    for i in range(3000):
+        num = avg_cal.aver(diff_return[i])
+        for j in range(7):
+            diff_return[i][j] -= num
 
     matrix_diff_origin = numpy.array(diff_return)
     # use numpy to calculate covariance(协方差) matrix of the matrix and view each row as a var
     cov_matrix = numpy.cov(matrix_diff_origin, rowvar=False)
     # calculate matrix eigenvalues of the matrix
     # eig_matrix_list[0]特征值，[1]特征向量
-    eig_matrix_list = numpy.linalg.eig(matrix_diff_origin)
-    main_var_index = eig_matrix_list.index(min(eig_matrix_list[0]))
+    eig_matrix_list = numpy.linalg.eig(cov_matrix)
+    main_var_index = eig_matrix_list.index(min(cov_matrix[0]))
     # have Eigenvector of the matrix
     eig_vector_matrix = eig_matrix_list[1][main_var_index]
     # transpose the matrix
