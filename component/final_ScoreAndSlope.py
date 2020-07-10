@@ -101,7 +101,7 @@ def min_max_normalize(dict_before):            #将字典标准化
 def application(filepath):                 #遍历case，形成字典，返回一个包含字典的列表
     dict_average_final_score = {}
     dict_average_slope = {}
-    for i in range(2000,3000):
+    for i in range(0,3000):
         average_final_score = aver_final_score(i, filepath)
         average_slope = aver_slope(i, filepath)
         if average_final_score != -1:
