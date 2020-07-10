@@ -2,3 +2,5 @@
 /data
 /tmp
 /venv
+component/__pycache__
+component/__init__.py
