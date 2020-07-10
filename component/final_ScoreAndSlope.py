@@ -1,5 +1,4 @@
 import json
-
 '''
 调用load方法进行加载，返回时有两种方法，可以指定返回record还是info，如果是info数据格式如下：
 
