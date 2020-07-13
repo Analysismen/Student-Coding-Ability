@@ -242,7 +242,7 @@ import numpy as np
 # numpy.ndarray.flat 是一个数组元素迭代器
 # 每一列为一组数据，一共三组数据
 a = np.arange(9).reshape(3, 3)
-c = np.dot(a,a.T)/3
+c = np.dot(a, a.T) / 3
 # 计算特征值
 t = np.linalg.eigvals(c)
 # 计算特征向量
@@ -253,8 +253,8 @@ print(t)
 # 进行函数投影，特征值对应的特征向量
 print(s1[0])
 # 降维后的结果
-result = np.dot(s1[0],a)
-print(np.dot(s1[0:2],a))
-print(np.dot(s1[0:2],a)[0:2,0])
+result = np.dot(s1[0], a)
+print(np.dot(s1[0:2], a))
+print(np.dot(s1[0:2], a)[0:2, 0])
 # 输出降维后的结果
 print(result)

@@ -10,7 +10,7 @@ theDict = avg.main_thread()
 
 
 def jsonRead():
-    f = open('../test_data.json', 'r', encoding='utf-8')
+    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
@@ -44,7 +44,7 @@ def get_avg():
 
 
 def jsonSecondRead():
-    f = open('../test_data.json', 'r', encoding='utf-8')
+    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
