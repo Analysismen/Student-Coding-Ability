@@ -37,3 +37,7 @@ print(dictFirstUpload)
 
 def getDictFirstUpload():
     return dictFirstUpload
+
+
+if __name__ == '__main__':
+    getDictFirstUpload()

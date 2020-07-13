@@ -3,6 +3,7 @@ import subprocess
 
 dictOfStudent = {}
 
+
 def getStudentScore(path):
     process = subprocess.Popen("pylint --rcfile=pylint.conf " + path, shell=True, stdout=subprocess.PIPE,
                                stderr=subprocess.STDOUT)
@@ -13,6 +14,7 @@ def getStudentScore(path):
     if studentScore == '':
         studentScore = '0.00'
     return studentScore
+
 
 def jsonRead():
     f = open('../sample.json', 'r', encoding='utf-8')
@@ -26,23 +28,28 @@ def jsonRead():
         for eachCase in cases:
             uploads = eachCase['upload_records']
             case_id = eachCase['case_id']
-            finalUploads = 0
-            if len(uploads)==0:
+            if len(uploads) == 0:
                 break
             else:
                 finalUploads = uploads[-1]['upload_id']
-            score = getStudentScore('../data/'+str(userId)+'/'+case_id+'/'+str(finalUploads)+'/main.py')
-            codeScored += (float(score)+20)/3
+            score = getStudentScore('../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py')
+            codeScored += (float(score) + 20) / 3
             codeNumber += 1
-        dictOfStudent[str(userId)] = round(codeScored/codeNumber,2)
+        dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
     with open("../CodingStyleOutPut.json", "w") as Coding:
         json.dump(dictOfStudent, Coding)
     print("加载入文件完成...")
     Coding.close()
     f.close()
 
+
 jsonRead()
 print(dictOfStudent)
 
+
 def getDictOfStudent():
     return dictOfStudent
+
+
+if __name__ == '__main__':
+    getDictOfStudent()
