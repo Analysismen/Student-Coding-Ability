@@ -35,6 +35,10 @@ def jsonRead():
             codeScored += (float(score)+20)/3
             codeNumber += 1
         dictOfStudent[str(userId)] = round(codeScored/codeNumber,2)
+    with open("../CodingStyleOutPut.json", "w") as Coding:
+        json.dump(dictOfStudent, Coding)
+    print("加载入文件完成...")
+    Coding.close()
     f.close()
 
 jsonRead()
