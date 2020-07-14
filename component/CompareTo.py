@@ -9,8 +9,8 @@ avg_dict = {'字符串': 0, '排序算法': 0, '线性表': 0, '数字操作': 0
 theDict = avg.main_thread()
 
 
-def jsonRead():
-    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
+def jsonRead(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
@@ -43,8 +43,8 @@ def get_avg():
     avg_dict['查找算法'] = diff.aver(temp)
 
 
-def jsonSecondRead():
-    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
+def jsonSecondRead(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
@@ -59,11 +59,10 @@ def jsonSecondRead():
     f.close()
 
 
-def main_thread():
-    jsonRead()
+def main_thread(file_path):
+    jsonRead(file_path)
     get_avg()
-    jsonSecondRead()
-    print(return_dict)
+    jsonSecondRead(file_path)
     return return_dict
 
 

@@ -4,8 +4,8 @@ times = [0] * 3000
 scores = [0] * 3000
 
 
-def json_read():
-    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
+def json_read(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         each_record = data[each]
@@ -18,8 +18,8 @@ def json_read():
     f.close()
 
 
-def main_thread():
-    json_read()
+def main_thread(file_path):
+    json_read(file_path)
     dict_average_score = {}
     for i in range(3000):
         if times[i] != 0:

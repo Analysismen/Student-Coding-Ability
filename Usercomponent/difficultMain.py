@@ -6,63 +6,63 @@ import component.FinalScore as final
 import component.FractionalRatio as frac
 import component.normalize as nomal
 import component.timeToSolve as time
-import component.final_ScoreAndSlope as avg_cal
 import numpy
 
 diff_return = []
-for i in range(3000):
+file_path = 'C:/Users/icimence/Desktop/Question Difficulty/test_data.json'
+for n in range(3000):
     temp = []
-    for j in range(7):
+    for m in range(7):
         temp.append(0)
     diff_return.append(temp)
 
 
 def main_thread():
-    temp_return = firstgit.getDictFirstGit()
+    temp_return = firstgit.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         print(diff_return[2601])
         diff_return[int(case_id)][0] = temp_return[case_id]
 
-    temp_return = final.getDictFinalScore()
+    temp_return = final.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         diff_return[int(case_id)][1] = temp_return[case_id]
 
-    temp_return = avg.main_thread()
+    temp_return = avg.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         diff_return[int(case_id)][2] = temp_return[case_id]
 
-    temp_return = frac.getDictFractionalRatio()
+    temp_return = frac.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         diff_return[int(case_id)][3] = temp_return[case_id]
 
-    temp_return = slope.getDictHalfSlope()
+    temp_return = slope.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         diff_return[int(case_id)][4] = temp_return[case_id]
 
-    temp_return = time.main_thread()
+    temp_return = time.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         diff_return[int(case_id)][5] = temp_return[case_id]
 
-    temp_return = com.main_thread()
+    temp_return = com.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
         diff_return[int(case_id)][6] = temp_return[case_id]
 
     for i in range(3000):
-        num = avg_cal.aver(diff_return[i])
+        num = aver(diff_return[i])
         for j in range(7):
             diff_return[i][j] -= num
 
@@ -88,3 +88,10 @@ def main_thread():
 
 if __name__ == '__main__':
     main_thread()
+
+
+def aver(num_list):  # 对列表取平均值
+    s = 0
+    for x in num_list:
+        s += x
+    return s / len(num_list)

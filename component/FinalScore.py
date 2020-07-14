@@ -6,8 +6,8 @@ times = [0] * 3000
 scores = [0] * 3000
 
 
-def jsonRead():
-    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
+def jsonRead(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
@@ -22,14 +22,10 @@ def jsonRead():
     f.close()
 
 
-jsonRead()
-dictFinalScore = {}
-for i in range(0, 3000):
-    if (times[i] != 0):
-        dictFinalScore[str(i)] = float(scores[i] / times[i])
-
-print(dictFinalScore)
-
-
-def getDictFinalScore():
+def main_thread(file_path):
+    jsonRead(file_path)
+    dictFinalScore = {}
+    for i in range(0, 3000):
+        if (times[i] != 0):
+            dictFinalScore[str(i)] = float(scores[i] / times[i])
     return dictFinalScore
