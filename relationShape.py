@@ -1,13 +1,13 @@
-import numpy as np # 导入库
+import numpy as np  # 导入库
 import json
 
-f = open('sample.json','r',encoding='utf-8')
+f = open('sample.json', 'r', encoding='utf-8')
 fStr = []
 data = json.load(f)
 for each in data:
     fStr.append(int(each))
 print(fStr)
 a = np.asarray(fStr)
-a.shape = (5,2)
-correlation_matrix = np.corrcoef(a, rowvar=0) # 相关性分析,rowvar=0表示对行作相关性分析
-print(correlation_matrix.round(2)) # 打印输出相关性结果
+a.shape = (2, 5)
+correlation_matrix = np.corrcoef(a, rowvar=True)  # 相关性分析,rowvar=0表示对行作相关性分析
+print(correlation_matrix.round(2))  # 打印输出相关性结果

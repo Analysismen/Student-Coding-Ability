@@ -17,12 +17,18 @@ for n in range(3000):
     diff_return.append(temp)
 
 
+def aver(num_list):  # 对列表取平均值
+    s = 0
+    for x in num_list:
+        s += x
+    return s / len(num_list)
+
+
 def main_thread():
     temp_return = firstgit.main_thread(file_path)
     temp_return = nomal.min_max_normalize(temp_return)
     temp_case_list = temp_return.keys()
     for case_id in temp_case_list:
-        print(diff_return[2601])
         diff_return[int(case_id)][0] = temp_return[case_id]
 
     temp_return = final.main_thread(file_path)
@@ -83,15 +89,10 @@ def main_thread():
     for i in range(3000):
         res_matrix[i] = float(res_matrix[i])
     print(res_matrix)
+    for i in range(2600, 2620):
+        print(res_matrix[i])
     return res_matrix
 
 
 if __name__ == '__main__':
     main_thread()
-
-
-def aver(num_list):  # 对列表取平均值
-    s = 0
-    for x in num_list:
-        s += x
-    return s / len(num_list)

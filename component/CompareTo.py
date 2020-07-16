@@ -1,12 +1,11 @@
 import json
 import component.averageScore as avg
-import component.final_ScoreAndSlope as diff
+import Usercomponent.difficultMain as diff
 
 return_dict = {}
-
 resultdict = {'字符串': [], '排序算法': [], '线性表': [], '数字操作': [], '查找算法': [], '树结构': [], '数组': [], '图结构': []}
 avg_dict = {'字符串': 0, '排序算法': 0, '线性表': 0, '数字操作': 0, '查找算法': 0, '树结构': 0, '数组': 0, '图结构': 0}
-theDict = avg.main_thread()
+theDict = {}
 
 
 def jsonRead(file_path):
@@ -60,6 +59,8 @@ def jsonSecondRead(file_path):
 
 
 def main_thread(file_path):
+    global theDict
+    theDict = avg.main_thread(file_path)
     jsonRead(file_path)
     get_avg()
     jsonSecondRead(file_path)
