@@ -1,3 +1,5 @@
+import json
+
 import userComponent.FirstUpload as firstUpload
 import userComponent.Fraction as fraction
 import userComponent.Time as time
@@ -37,10 +39,13 @@ def main_thread():
     temp_value_list = list(temp_return.values())
     diff_return.append(temp_value_list)
 
-    temp_return = codingStyle.main_thread(file_path)           # 有点慢，估计test_data会很慢
-    temp_return = normal.min_max_normalize(temp_return)
+    f = open('CodingStyleOutPut.json', 'r', encoding='utf-8')             # codingStyle这个速度，还是直接读文件比较好
+    data = json.load(f)
+    print(data)
+    temp_return = normal.min_max_normalize(data)
     temp_value_list = list(temp_return.values())
     diff_return.append(temp_value_list)
+
 
     print(diff_return)
 
