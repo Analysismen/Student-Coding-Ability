@@ -12,12 +12,17 @@ diff_return = []
 file_path = 'E:/coding/python/Question-Difficulty/sample.json'
 
 def main_thread():
-    temp_return = firstUpload.main_thread(file_path)
+    temp_return = userScore.main_thread(file_path)
     temp_return = normal.min_max_normalize(temp_return)
     temp_value_list = list(temp_return.values())
     diff_return.append(temp_value_list)
 
     temp_return = fraction.main_thread(file_path)
+    temp_return = normal.min_max_normalize(temp_return)
+    temp_value_list = list(temp_return.values())
+    diff_return.append(temp_value_list)
+
+    temp_return = firstUpload.main_thread(file_path)
     temp_return = normal.min_max_normalize(temp_return)
     temp_value_list = list(temp_return.values())
     diff_return.append(temp_value_list)
@@ -28,11 +33,6 @@ def main_thread():
     diff_return.append(temp_value_list)
 
     temp_return = compare.main_thread(file_path)
-    temp_return = normal.min_max_normalize(temp_return)
-    temp_value_list = list(temp_return.values())
-    diff_return.append(temp_value_list)
-
-    temp_return = userScore.main_thread(file_path)
     temp_return = normal.min_max_normalize(temp_return)
     temp_value_list = list(temp_return.values())
     diff_return.append(temp_value_list)
