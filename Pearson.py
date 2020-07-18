@@ -11,6 +11,41 @@ import numpy as np
 diff_return = []
 file_path = 'E:/coding/python/Question-Difficulty/sample.json'
 
+'''
+def list_merge(l):  # 如果有类似于[[a,b],[a,c],[b,c]]的结果，合并为[[a,b,c]] （以及 [[a,b,c],[c,d],[b,d]]? 也能[[a,b,c,d]]吗，但没有[a,d]啊。擦，不做了，好复杂。）
+    b, c = l[len(l) - 1]  # 这个函数现在只能用来解决前者,但还是没调用。因为目前主函数还没添加[c，b]在[a,b,c]的判断，而且实现不了后者，实现前者也没意义。test_data分析结果还是手动合并吧
+    a = 0
+    res = False
+    
+    for i in range(len(l) - 1):
+        if b in l[i]:
+            if l[i][0] == b:
+                a = l[i][1]
+            else:
+                a = l[i][0]
+            for j in range(len(l) - 1):
+                if l[j] == [a, c] or l[j] == [c, a]:
+                    res = True
+                    l.remove([b, c])
+                    l.remove(l[j])
+                    l[i].append(c)
+                    break
+        if c in l[i]:
+            if l[i][0] == c:
+                a = l[i][1]
+            else:
+                a = l[i][0]
+            for j in range(len(l) - 1):
+                if l[j] == [a, b] or l[j] == [b, a]:
+                    res = True
+                    l.remove([b, c])
+                    l.remove(l[j])
+                    l[i].append(b)
+                    break
+        if res: break
+    return l
+
+'''
 
 def main_thread():
     temp_return = userScore.main_thread(file_path)
@@ -50,6 +85,9 @@ def main_thread():
     # correlation_matrix = np.corrcoef(a, rowvar=True)
     # print(correlation_matrix.round(2))
 
+    positive_relations = []
+    negative_relations = []
+
     corr_matrix_list = []
     p_matrix_list = []
     for i in range(len(a)):
@@ -59,6 +97,13 @@ def main_thread():
             corr, p = pearsonr(a[i], a[j])
             tmp_0.append(corr)
             tmp_1.append(p)
+            if p < 0.05 and i != j:
+                if corr > 0.8 and [j, i] not in positive_relations:
+                    positive_relations.append([i, j])
+                    # list_merge(positive_relations)
+                if corr < -0.8 and [j, i] not in negative_relations:
+                    negative_relations.append([i, j])
+                    # list_merge(negative_relations)
         corr_matrix_list.append(tmp_0)
         p_matrix_list.append(tmp_1)
 
@@ -66,10 +111,10 @@ def main_thread():
     p_matrix = np.asarray(p_matrix_list)
     print(corr_matrix.round(2))
     print(p_matrix.round(2))
-    list_return = [corr_matrix, p_matrix]
-    print(list_return)
-    return list_return
 
+    positive_negative = [positive_relations, negative_relations]
+    print(positive_negative)
+    return positive_negative
 
 if __name__ == '__main__':
     main_thread()
