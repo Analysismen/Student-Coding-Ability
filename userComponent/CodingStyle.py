@@ -23,6 +23,8 @@ def jsonRead(file_path):
     f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
+        codeScored = 0
+        codeNumber = 0
         eachRecord = data[each]
         cases = eachRecord['cases']
         userId = eachRecord['user_id']
@@ -34,7 +36,11 @@ def jsonRead(file_path):
             else:
                 finalUploads = uploads[-1]['upload_id']
             score = getStudentScore('../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py')
-            dictOfStudent[str(userId)+" "+str(case_id)] = round(float(score), 2)
+            codeScored += float(score)
+            codeNumber += 1
+        dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
+        print(dictOfStudent)
+        # print(271-len(dictOfStudent))
     with open("../CodingStyleOutPut.json", "w") as Coding:
         json.dump(dictOfStudent, Coding)
     # print("加载入文件完成...")
@@ -44,5 +50,3 @@ def jsonRead(file_path):
 def main_thread(file_path):
     jsonRead(file_path)
     return dictOfStudent
-
-jsonRead('../sample.json')
