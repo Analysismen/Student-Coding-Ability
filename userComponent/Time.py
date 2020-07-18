@@ -8,8 +8,8 @@ nums = [0] * 61800
 scores = [0] * 61800
 
 
-def jsonRead():
-    f = open('../test_data.json', 'r', encoding='utf-8')
+def jsonRead(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
@@ -26,14 +26,12 @@ def jsonRead():
     f.close()
 
 
-jsonRead()
-dictTime = {}
-for i in range(2800, 61800):
-    if (nums[i] != 0):
-        # 存入字典，保留两位小数
-        dictTime[str(i)] = round(float(scores[i] / nums[i]), 2)
-print(dictTime)
 
-
-def getDictTime():
+def main_thread(file_path):
+    jsonRead(file_path)
+    dictTime = {}
+    for i in range(2800, 61800):
+        if (nums[i] != 0):
+            # 存入字典，保留两位小数
+            dictTime[str(i)] = round(float(scores[i] / nums[i]), 2)
     return dictTime

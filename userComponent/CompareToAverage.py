@@ -9,9 +9,9 @@ nums = [0] * 61800
 scores = [0] * 61800
 
 
-def jsonRead():
-    average_score_dict = avg.main_thread()
-    f = open('../test_data.json', 'r', encoding='utf-8')
+def jsonRead(file_path):
+    average_score_dict = avg.main_thread(file_path)
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         eachRecord = data[each]
@@ -26,14 +26,11 @@ def jsonRead():
     f.close()
 
 
-jsonRead()
-dictCTA = {}
-for i in range(2800, 61800):
-    if (nums[i] != 0):
-        # 存入字典，保留两位小数
-        dictCTA[str(i)] = round(float(scores[i] / nums[i]), 2)
-print(dictCTA)
-
-
-def getDictCTA():
+def main_thread(file_path):
+    jsonRead(file_path)
+    dictCTA = {}
+    for i in range(2800, 61800):
+        if (nums[i] != 0):
+            # 存入字典，保留两位小数
+            dictCTA[str(i)] = round(float(scores[i] / nums[i]), 2)
     return dictCTA

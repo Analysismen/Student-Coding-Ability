@@ -16,8 +16,8 @@ def getStudentScore(path):
     return studentScore
 
 
-def jsonRead():
-    f = open('../sample.json', 'r', encoding='utf-8')
+def jsonRead(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         codeScored = 0
@@ -38,18 +38,10 @@ def jsonRead():
         dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
     with open("../CodingStyleOutPut.json", "w") as Coding:
         json.dump(dictOfStudent, Coding)
-    print("加载入文件完成...")
+    # print("加载入文件完成...")
     Coding.close()
     f.close()
 
-
-jsonRead()
-print(dictOfStudent)
-
-
-def getDictOfStudent():
+def main_thread(file_path):
+    jsonRead(file_path)
     return dictOfStudent
-
-
-if __name__ == '__main__':
-    getDictOfStudent()
