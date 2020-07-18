@@ -88,9 +88,11 @@ def main_thread():
     res_matrix = list(numpy.dot(matrix_diff_origin, trans_eig_vec_matrix))
     for i in range(3000):
         res_matrix[i] = float(res_matrix[i])
-    print(res_matrix)
-    for i in range(2600, 2620):
-        print(res_matrix[i])
+    min_val = min(res_matrix)
+    max_val = max(res_matrix)
+    sub_val = max_val - min_val
+    for i in range(len(res_matrix)):
+        res_matrix[i] = round((res_matrix[i] - min_val)/sub_val,2)
     return res_matrix
 
 
