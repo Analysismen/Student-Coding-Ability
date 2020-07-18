@@ -5,23 +5,24 @@ dictOfStudent = {}
 
 
 def getStudentScore(path):
-    process = subprocess.Popen("pylint --rcfile=pylint.conf " + path, shell=True, stdout=subprocess.PIPE,
-                               stderr=subprocess.STDOUT)
-    command_output = process.stdout.read().decode('gb18030')
-    splitOutCome = command_output.split('\n')
-    totalScore = splitOutCome[-3][28:-2]
-    studentScore = totalScore[0:-3]
-    if studentScore == '':
-        studentScore = '0.00'
-    return studentScore
+    try:
+        process = subprocess.Popen("pylint --rcfile=pylint.conf " + path, shell=True, stdout=subprocess.PIPE,
+                                   stderr=subprocess.STDOUT)
+        command_output = process.stdout.read().decode('gb18030')
+        splitOutCome = command_output.split('\n')
+        totalScore = splitOutCome[-3][28:-2]
+        studentScore = totalScore[0:-3]
+        if studentScore == '':
+            studentScore = '0.00'
+        return studentScore
+    except:
+        return '0.00'
 
 
 def jsonRead(file_path):
     f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
-        codeScored = 0
-        codeNumber = 0
         eachRecord = data[each]
         cases = eachRecord['cases']
         userId = eachRecord['user_id']
@@ -33,9 +34,7 @@ def jsonRead(file_path):
             else:
                 finalUploads = uploads[-1]['upload_id']
             score = getStudentScore('../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py')
-            codeScored += (float(score) + 20) / 3
-            codeNumber += 1
-        dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
+            dictOfStudent[str(userId)+" "+str(case_id)] = round(float(score), 2)
     with open("../CodingStyleOutPut.json", "w") as Coding:
         json.dump(dictOfStudent, Coding)
     # print("加载入文件完成...")
@@ -45,3 +44,5 @@ def jsonRead(file_path):
 def main_thread(file_path):
     jsonRead(file_path)
     return dictOfStudent
+
+jsonRead('../sample.json')
