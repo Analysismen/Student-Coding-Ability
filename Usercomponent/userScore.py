@@ -1,11 +1,10 @@
 import json
-import Usercomponent.difficultMain as diff
+import userComponent.difficultMain as diff
 
 res_dict = {}
 
-
-def json_read():
-    f = open('C:/Users/icimence/Desktop/Question Difficulty/test_data.json', 'r', encoding='utf-8')
+def json_read(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
     return_list = diff.main_thread()
     data = json.load(f)
     for each in data:
@@ -24,11 +23,7 @@ def json_read():
     f.close()
 
 
-def main_thread():
-    json_read()
-    print(res_dict)
+def main_thread(file_path):
+    json_read(file_path)
     return res_dict
 
-
-if __name__ == '__main__':
-    main_thread()

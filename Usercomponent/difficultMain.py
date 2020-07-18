@@ -9,7 +9,8 @@ import component.timeToSolve as time
 import numpy
 
 diff_return = []
-file_path = 'C:/Users/icimence/Desktop/Question Difficulty/test_data.json'
+file_path = 'E:/coding/python/Question-Difficulty/sample.json'
+
 for n in range(3000):
     temp = []
     for m in range(7):
@@ -88,11 +89,15 @@ def main_thread():
     res_matrix = list(numpy.dot(matrix_diff_origin, trans_eig_vec_matrix))
     for i in range(3000):
         res_matrix[i] = float(res_matrix[i])
+
     min_val = min(res_matrix)
     max_val = max(res_matrix)
     sub_val = max_val - min_val
     for i in range(len(res_matrix)):
         res_matrix[i] = round((res_matrix[i] - min_val)/sub_val,2)
+
+    # print(res_matrix)
+
     return res_matrix
 
 
