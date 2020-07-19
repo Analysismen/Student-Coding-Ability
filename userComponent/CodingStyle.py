@@ -14,9 +14,9 @@ def getStudentScore(path):
         studentScore = totalScore[0:-3]
         if studentScore == '':
             studentScore = '0.00'
-        return studentScore
+        return float(studentScore)
     except:
-        return '0.00'
+        return float('0.00')
 
 
 def jsonRead(file_path):
@@ -36,7 +36,7 @@ def jsonRead(file_path):
             else:
                 finalUploads = uploads[-1]['upload_id']
             score = getStudentScore('../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py')
-            codeScored += float(score)
+            codeScored += score
             codeNumber += 1
         dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
         print(dictOfStudent)
@@ -50,3 +50,5 @@ def jsonRead(file_path):
 def main_thread(file_path):
     jsonRead(file_path)
     return dictOfStudent
+
+jsonRead('../test_data.json')
