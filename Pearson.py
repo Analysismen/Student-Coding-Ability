@@ -61,11 +61,11 @@ def main_thread():
             corr, p = pearsonr(a[i], a[j])
             tmp_0.append(corr)
             tmp_1.append(p)
-            if p < 0.05 and i != j:
-                if corr > 0.8 and [j, i] not in positive_relations:
+            if p < 0.01 and i != j:
+                if corr > 0.9 and [j, i] not in positive_relations:
                     positive_relations.append([i, j])
                     # list_merge(positive_relations)
-                if corr < -0.8 and [j, i] not in negative_relations:
+                if corr < -0.9 and [j, i] not in negative_relations:
                     negative_relations.append([i, j])
                     # list_merge(negative_relations)
         corr_matrix_list.append(tmp_0)
