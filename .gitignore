@@ -8,3 +8,5 @@ data
 tmp
 Usercomponent/__init__.py
 Usercomponent/__pycache__
+test_data.json
+sample.json

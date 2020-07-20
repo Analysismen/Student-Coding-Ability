@@ -9,7 +9,7 @@ import component.timeToSolve as time
 import numpy
 
 diff_return = []
-file_path = 'E:/coding/python/Question-Difficulty/sample.json'
+file_path = 'C:/Users/icimence/Desktop/Question Difficulty/sample.json'
 
 for n in range(3000):
     temp = []

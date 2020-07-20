@@ -25,7 +25,7 @@ def jsonRead(file_path):
     for each in data:
         codeScored = 0
         codeNumber = 0
-        eachRecord = data[each]
+        eachRecord = data['3544']
         cases = eachRecord['cases']
         userId = eachRecord['user_id']
         for eachCase in cases:
@@ -47,6 +47,11 @@ def jsonRead(file_path):
     Coding.close()
     f.close()
 
+
 def main_thread(file_path):
     jsonRead(file_path)
     return dictOfStudent
+
+
+if __name__ == '__main__':
+    main_thread('C:/Users/icimence/Desktop/Question Difficulty/test_data.json')
