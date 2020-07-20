@@ -1,6 +1,8 @@
 from mpl_toolkits import mplot3d
 import numpy as np
 import matplotlib.pyplot as plt
+import dataSolve.MultiLinear3D as mul
+
 
 # # 配置plt的figure文件，创建3d环境
 # fig = plt.figure()
@@ -25,17 +27,25 @@ import matplotlib.pyplot as plt
 def Visualization3D(valueArray):
     fig = plt.figure()
     ax = plt.axes(projection='3d')
-    xline = np.linspace(-100,100,10000)
-    yline = np.linspace(-100,100,10000)
+    xline = np.linspace(0, 100, 10000)
+    yline = np.linspace(0, 100, 10000)
     zline = xline * valueArray[1] + yline * valueArray[2] - valueArray[0]
-    ax.plot3D(xline,yline,zline,'black')
+    ax.plot3D(xline, yline, zline, 'black')
 
-    xdata = np.random.randn(100) * 30
-    ydata = xdata + np.random.randn(100) * 30
-    zdata = xdata * valueArray[1] + ydata * valueArray[2] - valueArray[0] + np.random.randn(100)*20
+    outCome = np.array(mul.get_data())
+    xdata = outCome[..., 1]
+    ydata = outCome[..., 2]
+    zdata = outCome[..., 0]
+
+    # xdata = np.random.randn(100) * 30
+    # ydata = xdata + np.random.randn(100) * 30
+    # zdata = xdata * valueArray[1] + ydata * valueArray[2] - valueArray[0] + np.random.randn(100)*20
     ax.scatter3D(xdata, ydata, zdata, c=zdata)
     plt.show()
     plt.close()
 
-if __name__=="__main__":
-    Visualization3D([-13.98,2.088,0.2257])
+
+if __name__ == "__main__":
+    Visualization3D([-13.98, 2.088, 0.2257])
+    outCome = mul.get_data()
+    print(outCome[0])
