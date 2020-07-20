@@ -19,7 +19,7 @@ def json_read(file_path):
             case_id = each_case['case_id']
             sum_score += final_score * return_list[int(case_id)]
             time += 1
-            res_dict[user_id] = sum_score / time  # 这里有问题，因为标准化导致了很多都是负数，并且不清楚负数的下限。
+            res_dict[str(user_id)] = sum_score / time  # 这里有问题，因为标准化导致了很多都是负数，并且不清楚负数的下限。
     f.close()
 
 
