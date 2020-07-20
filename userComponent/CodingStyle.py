@@ -38,7 +38,10 @@ def jsonRead(file_path):
             score = getStudentScore('../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py')
             codeScored += score
             codeNumber += 1
-        dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
+        try:
+            dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
+        except:
+            dictOfStudent[str(userId)] = round(-5,2)
         print(dictOfStudent)
         # print(271-len(dictOfStudent))
     with open("../CodingStyleOutPut.json", "w") as Coding:
