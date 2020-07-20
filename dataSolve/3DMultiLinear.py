@@ -15,6 +15,21 @@ for i in range(9):
     main_array[i][0] = 1
 
 
+def get_data():
+    global main_array
+    main_thread()
+    main_array[0][0] = score_array[0]
+    main_array[1][0] = score_array[1]
+    main_array[2][0] = score_array[2]
+    main_array[3][0] = score_array[3]
+    main_array[4][0] = score_array[4]
+    main_array[5][0] = score_array[5]
+    main_array[6][0] = score_array[6]
+    main_array[7][0] = score_array[7]
+    main_array[8][0] = score_array[8]
+    return main_array
+
+
 def main_thread():
     global main_array
     global score_array
