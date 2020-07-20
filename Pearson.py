@@ -1,15 +1,15 @@
 import json
 from scipy.stats import pearsonr
-import userComponent.FirstUpload as firstUpload
-import userComponent.Fraction as fraction
-import userComponent.Time as time
-import userComponent.UserScore as userScore
-import userComponent.CompareToAverage as compare
+import Usercomponent.FirstUpload as firstUpload
+import Usercomponent.Fraction as fraction
+import Usercomponent.Time as time
+import Usercomponent.userScore as userScore
+import Usercomponent.CompareToAverage as compare
 import component.normalize as normal
 import numpy as np
 
 diff_return = []
-file_path = 'E:/coding/python/Question-Difficulty/sample.json'
+file_path = 'E:/coding/python/Question-Difficulty/test_data.json'
 
 def main_thread():
     temp_return = userScore.main_thread(file_path)

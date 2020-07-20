@@ -1,6 +1,6 @@
 import json
 import component.averageScore as avg
-import userComponent.difficultMain as diff
+import Usercomponent.difficultMain as diff
 
 return_dict = {}
 resultdict = {'字符串': [], '排序算法': [], '线性表': [], '数字操作': [], '查找算法': [], '树结构': [], '数组': [], '图结构': []}

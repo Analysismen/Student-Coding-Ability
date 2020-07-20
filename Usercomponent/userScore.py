@@ -1,5 +1,5 @@
 import json
-import userComponent.difficultMain as diff
+import Usercomponent.difficultMain as diff
 
 res_dict = {}
 
