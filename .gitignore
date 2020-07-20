@@ -10,3 +10,7 @@ Usercomponent/__init__.py
 Usercomponent/__pycache__
 test_data.json
 sample.json
+论文.aux
+论文.log
+论文.pdf
+论文.synctex.gz
