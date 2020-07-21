@@ -4,7 +4,7 @@ import numpy as np
 
 main_array = []
 score_array = [30, 70, 77, 98, 70, 90, 89, 75, 37]
-file_path = 'C:/Users/icimence/Desktop/Question Difficulty/test_data.json'
+file_path = 'D:/Question-Difficulty/test_data.json'
 for i in range(9):
     temp = []
     for j in range(3):
