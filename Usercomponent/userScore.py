@@ -11,7 +11,6 @@ def json_read(file_path):
         each_record = data[each]
         cases = each_record['cases']
         user_id = int(each_record['user_id'])
-        res_dict[user_id] = 0
         time = 0
         sum_score = 0
         for each_case in cases:

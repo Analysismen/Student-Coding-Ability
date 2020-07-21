@@ -1,18 +1,58 @@
-\documentclass[a4paper]{ctexart}
-\usepackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=2.50cm]{geometry} %页边距
+\documentclass[UTF8]{ctexart}
+\usepackage{geometry}
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\pagestyle{plain}	
+% \usepackage{booktabs}
+% \usepackage{subfigure}
+\usepackage{setspace}
+\date{}
 
 \usepackage{ctex}
 \usepackage{amsmath}
 
-\title{结合慕测（mooctest）平台的后台数据对学生编程能力分析报告}
+
+\title{结合慕测（MoocTest）平台的后台数据对学生编程能力分析报告}
 
 \author{\small 戴俊浩，郭增嘉，刁苏阳}
 \renewcommand{\baselinestretch}{1.5}
-\date{\small 第一次创建:2020年7月20号\\最后修改时间:2020年7月20号}
 \begin{document}
 \ttfamily \songti
 \zihao {-4}
-\maketitle
+
+\begin{center}
+    \quad \\
+    \quad \\
+    \heiti \fontsize{45}{17} 研\quad 究\quad 报\quad 告
+    \vskip 3.5cm
+    \heiti \zihao{2} 通过分析慕测平台数据分析学生编程能力	
+\end{center}
+\vskip 3.5cm
+
+\begin{quotation}
+    \songti \fontsize{15}{15}
+    \doublespacing
+    \par\setlength\parindent{12em}
+    \quad 
+
+    学\hspace{0.61cm} 院：\underline{\quad 软件学院\quad}
+
+    创建时间：\underline{2020年7月20日}
+
+    学生姓名：\underline{戴俊浩，郭增嘉，刁苏阳}
+
+    学\hspace{0.61cm}号：\underline{\small 181250022，1812500xx，1812500xx}
+
+    教\hspace{0.61cm}师：\underline{\qquad 陈振宇 \qquad}
+    \vskip 2cm
+    \centering
+    2020年07月20日
+\end{quotation}
+
+\newpage
+\tableofcontents
+\newpage
 \section{研究问题:学生编程能力探究}
 \subsection{详细介绍}
 我们将研究方向设定为学生编程能力的分析，我们通过主成分分析法对平台的数据进行题目难度分析
@@ -28,17 +68,34 @@
 \subsubsection{主成分分析(PCA)}
 在处理题目难度的时候使用了主成分分析法，首先将题目的数据通过对json文件的分析导入到一个矩阵中，这个矩阵是一个3000*7的矩阵，7列是题目的7个维度的数据
 ，分别是该题的初始提交分，该题的最终得分，该题的平均分，该题的最终得分和提交次数的比值，该题的前一半的提交的斜率，也就是用户在做题时分数的增长
-速率还有该题的总耗时以及该题的最终分数和其他题目的最终分数的差值。
+速率还有该题的总耗时以及该题的最终分数和其他题目的最终分数的差值。通过对json文件的读取实现了对这些数据的分析。
+
+使用主成分分析法，首先将数据注入到3000*7的二维数组中，从7个维度展现这个题目难度。将所有的数据减去该列的平均值。做标准化，然后将二维数组转换为矩阵，
+求矩阵的协方差矩阵即$C=B^T \dot B$，然后一次求出特征值和特征向量，对特征值进行排序，选取最大的一个特征值对应的列作为主成分，得到相应的投影矩阵，
+最后利用投影矩阵得出降维之后的数据（$E = B \dot D^T$），最后对得到的数据进行标准化，将数据的区间限定为$[0，1]$,这样就使用主成分分析的方法
+获得了题目的难度系数。
 \subsubsection{相关性分析(pearson)与显著性检验}
 \subsubsection{多元线性回归}
-$$X^TXB=X^TY$$
+处理学生的编程能力时使用了多元线性回归，我们尝试着将9位学生的样本的代码水平进行了评价，最后对他们的编程能力给出了一个分数，为了能够使多元线性回
+归更加准确这9个学生是2个较差，5个一般和2个较好，多元线性回归中一共使用了4个变量对一个学生的编程能力进行分析，分别是学生提交的所有题目的平均分，
+学生的提交分数和提交次数的比值，学生做这个题目所用的时间，学生的代码的规范得分。经过了上一步的皮尔森系数的相关性
+检验这几个数据的相关性并不是特别大，所以将这些数据使用最小二乘法进行多元线性回归，得出了一个学生编程能力的计算公式，当学生产生了答题记录之后
+就能通过OJ系统json数据大致估算出这个学生的编程能力。
+
+首先将数据注入预设好的矩阵当中，每一行的第一项都是1，作为常数项的系数，将二维的数组转换为矩阵$X$，同时将我们对就为同学的评分注入到一个$9*1$的矩阵$Y$
+中，之后使用\boldmath$$\hat{B}=\begin{pmatrix}
+    \hat{b_0}\\\hat{b_1}\\\vdots\\\hat{b_p}
+\end{pmatrix}=(X^TX)^{-1}X^TY$$\unboldmath
+对数据进行计算就可以较为轻松的得出最后的学生的编程能力和几个数据之间的函数关系。
 \subsubsection{数据可视化}
 \section{代码解析}
 \subsection{代码逻辑}
 \subsubsection{题目难度分析模块}
+我实在是不知道些什么了，我要写吐了
 \subsubsection{学生编程能力分析模块}
 \subsubsection{数据可视化}
 \subsection{代码开源地址}
+代码已由GitHub托管，开源项目地址：\href{https://github.com/Analysismen/Student-Coding-Ability}{点击访问}\footnote{点击后将跳转到https://github.com/Analysismen/Student-Coding-Ability}
 \section{案例分析}
 \subsection{分析题目难度}
 \subsection{分析学生编程能力}
@@ -49,6 +106,4 @@ $$X^TXB=X^TY$$
 \subsection{数据}
 \subsection{图表}
 \section{参考文献}
-
-使用$\\LaTeX$进行文本编辑
 \end{document}
