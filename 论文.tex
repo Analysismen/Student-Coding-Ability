@@ -4,7 +4,7 @@
 \usepackage{ctex}
 \usepackage{amsmath}
 
-\title{数据科学论文}
+\title{结合慕测（mooctest）平台的后台数据对学生编程能力分析报告}
 
 \author{\small 戴俊浩，郭增嘉，刁苏阳}
 \renewcommand{\baselinestretch}{1.5}
@@ -23,9 +23,12 @@
 \subsection{应用场景与价值}
 \section{研究方法}
 \subsection{数据源}
-使用了慕测平台的数据，分析学生的编程能力，通过OJ平台提供的json文件可以看到学生的userID以及一系列的提交记录
+使用了慕测平台的数据，分析学生的编程能力，通过OJ提供的json文件可以看到学生的userID以及一系列的提交记录，使用python读取json文件获取所需数据。
 \subsection{数据分析}
 \subsubsection{主成分分析(PCA)}
+在处理题目难度的时候使用了主成分分析法，首先将题目的数据通过对json文件的分析导入到一个矩阵中，这个矩阵是一个3000*7的矩阵，7列是题目的7个维度的数据
+，分别是该题的初始提交分，该题的最终得分，该题的平均分，该题的最终得分和提交次数的比值，该题的前一半的提交的斜率，也就是用户在做题时分数的增长
+速率还有该题的总耗时以及该题的最终分数和其他题目的最终分数的差值。
 \subsubsection{相关性分析(pearson)与显著性检验}
 \subsubsection{多元线性回归}
 $$X^TXB=X^TY$$

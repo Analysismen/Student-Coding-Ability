@@ -1,10 +1,11 @@
 import Usercomponent.userScore as user_score
 import Usercomponent.Fraction as frac
+import component.normalize as nom
 import numpy as np
 
 main_array = []
 score_array = [30, 70, 77, 98, 70, 90, 89, 75, 37]
-file_path = 'D:/Question-Difficulty/test_data.json'
+file_path = 'C:/Users/icimence/Desktop/Question Difficulty/test_data.json'
 for i in range(9):
     temp = []
     for j in range(3):
@@ -34,6 +35,7 @@ def main_thread():
     global main_array
     global score_array
     temp_return = user_score.main_thread(file_path)
+    temp_return = nom.min_max_normalize(temp_return)
     main_array[0][1] = temp_return['3544']
     main_array[1][1] = temp_return['48117']
     main_array[2][1] = temp_return['58744']
@@ -45,6 +47,7 @@ def main_thread():
     main_array[8][1] = temp_return['61143']
 
     temp_return = frac.main_thread(file_path)
+    temp_return = nom.min_max_normalize(temp_return)
     main_array[0][2] = temp_return['3544']
     main_array[1][2] = temp_return['48117']
     main_array[2][2] = temp_return['58744']
