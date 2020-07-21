@@ -6,10 +6,11 @@ import component.FinalScore as final
 import component.FractionalRatio as frac
 import component.normalize as nomal
 import component.timeToSolve as time
+import os
 import numpy
 
 diff_return = []
-file_path = 'C:/Users/icimence/Desktop/Question Difficulty/test_data.json'
+file_path = os.path.abspath(os.path.join(os.getcwd(), "../")).replace('\\', '/') + '/test_data.json'
 
 for n in range(3000):
     temp = []

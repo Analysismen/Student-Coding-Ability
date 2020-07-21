@@ -2,10 +2,11 @@ import Usercomponent.userScore as user_score
 import Usercomponent.Fraction as frac
 import component.normalize as nom
 import numpy as np
+import os
 
 main_array = []
 score_array = [30, 70, 77, 98, 70, 90, 89, 75, 37]
-file_path = 'C:/Users/icimence/Desktop/Question Difficulty/test_data.json'
+file_path = file_path = os.path.abspath(os.path.join(os.getcwd(), "../")).replace('\\', '/') + '/test_data.json'
 for i in range(9):
     temp = []
     for j in range(3):
