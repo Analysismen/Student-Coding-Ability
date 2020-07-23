@@ -19,13 +19,23 @@ def getStudentScore(path):
         return float('0.00')
 
 
+def getLine(path):
+    count = 0
+    try:
+        f = open(path, "r", encoding='utf-8')
+        for line in f.readlines():
+            count = count + 1
+        return count
+    except:
+        return 1
+
 def jsonRead(file_path):
     f = open(file_path, 'r', encoding='utf-8')
     data = json.load(f)
     for each in data:
         codeScored = 0
         codeNumber = 0
-        eachRecord = data['3544']
+        eachRecord = data[each]
         cases = eachRecord['cases']
         userId = eachRecord['user_id']
         for eachCase in cases:
@@ -35,8 +45,10 @@ def jsonRead(file_path):
                 break
             else:
                 finalUploads = uploads[-1]['upload_id']
-            score = getStudentScore('../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py')
-            codeScored += score
+            path = '../data/' + str(userId) + '/' + case_id + '/' + str(finalUploads) + '/main.py'
+            score = getStudentScore(path)
+            lineNumber = getLine(path)
+            codeScored += (score + 20)/3 * lineNumber
             codeNumber += 1
         try:
             dictOfStudent[str(userId)] = round(codeScored / codeNumber, 2)
@@ -57,4 +69,4 @@ def main_thread(file_path):
 
 
 if __name__ == '__main__':
-    main_thread('C:/Users/icimence/Desktop/Question Difficulty/test_data.json')
+    main_thread('D:/Question-Difficulty/test_data.json')
