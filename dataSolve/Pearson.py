@@ -6,10 +6,12 @@ import Usercomponent.Time as time
 import Usercomponent.userScore as userScore
 import Usercomponent.CompareToAverage as compare
 import component.normalize as normal
+import os
 import numpy as np
 
 diff_return = []
-file_path = 'E:/coding/python/Question-Difficulty/test_data.json'
+file_path = os.path.abspath(os.path.join(os.getcwd(), "../")).replace('\\', '/') + '/test_data.json'
+
 
 def main_thread():
     temp_return = userScore.main_thread(file_path)
@@ -80,41 +82,6 @@ def main_thread():
     print(positive_negative)
     return positive_negative
 
+
 if __name__ == '__main__':
     main_thread()
-
-'''
-def list_merge(l):  
-    b, c = l[len(l) - 1]  
-    a = 0
-    res = False
-
-    for i in range(len(l) - 1):
-        if b in l[i]:
-            if l[i][0] == b:
-                a = l[i][1]
-            else:
-                a = l[i][0]
-            for j in range(len(l) - 1):
-                if l[j] == [a, c] or l[j] == [c, a]:
-                    res = True
-                    l.remove([b, c])
-                    l.remove(l[j])
-                    l[i].append(c)
-                    break
-        if c in l[i]:
-            if l[i][0] == c:
-                a = l[i][1]
-            else:
-                a = l[i][0]
-            for j in range(len(l) - 1):
-                if l[j] == [a, b] or l[j] == [b, a]:
-                    res = True
-                    l.remove([b, c])
-                    l.remove(l[j])
-                    l[i].append(b)
-                    break
-        if res: break
-    return l
-
-'''

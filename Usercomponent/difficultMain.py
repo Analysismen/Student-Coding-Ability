@@ -82,6 +82,7 @@ def main_thread():
     eig_matrix_list = numpy.linalg.eig(cov_matrix)
     eig_matrix_value = list(numpy.linalg.eigvals(cov_matrix))
     main_var_index = eig_matrix_value.index(max(eig_matrix_value))  # eig_matrix_list[0].index(max(eig_matrix_value))
+    print(main_var_index)
     # have Eigenvector of the matrix
     eig_vector_matrix = numpy.array(list(eig_matrix_list[1][main_var_index]))
     # transpose the matrix
@@ -95,7 +96,7 @@ def main_thread():
     max_val = max(res_matrix)
     sub_val = max_val - min_val
     for i in range(len(res_matrix)):
-        res_matrix[i] = round((res_matrix[i] - min_val)/sub_val,2)
+        res_matrix[i] = round((res_matrix[i] - min_val) / sub_val, 2)
 
     # print(res_matrix)
 
