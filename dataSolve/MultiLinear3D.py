@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 main_array = []
-score_array = [30, 70, 77, 98, 70, 90, 89, 75, 37]
+score_array = [30, 70, 77, 98, 70, 85, 89, 75, 37]
 file_path = file_path = os.path.abspath(os.path.join(os.getcwd(), "../")).replace('\\', '/') + '/test_data.json'
 for i in range(9):
     temp = []

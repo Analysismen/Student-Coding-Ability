@@ -7,7 +7,7 @@ import json
 import numpy as np
 
 main_array = []
-score_array = [30, 70, 77, 98, 70, 90, 89, 75, 37]
+score_array = [30, 70, 77, 98, 70, 85, 89, 75, 37]
 file_path = os.path.abspath(os.path.join(os.getcwd(), "../")).replace('\\', '/') + '/test_data.json'
 file_path_style = os.path.abspath(os.path.join(os.getcwd(), "../")).replace('\\', '/') + '/CodingStyleOutPut.json'
 for i in range(9):
