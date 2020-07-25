@@ -37,9 +37,6 @@ def Visualization3D(valueArray):
     ydata = outCome[..., 2]
     zdata = outCome[..., 0]
 
-    # xdata = np.random.randn(100) * 30
-    # ydata = xdata + np.random.randn(100) * 30
-    # zdata = xdata * valueArray[1] + ydata * valueArray[2] - valueArray[0] + np.random.randn(100)*20
     ax.scatter3D(xdata, ydata, zdata, c=zdata)
     plt.show()
     plt.close()
