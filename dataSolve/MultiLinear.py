@@ -83,6 +83,7 @@ def main_thread():
     for i in range(len(res_vector)):
         res_vector[i] = float(res_vector[i])
     print(res_vector)
+    print(main_array[0][0]*res_vector[1]+main_array[0][1]*res_vector[2]+main_array[0][2]*res_vector[3]+main_array[0][3]*res_vector[4]-res_vector[0])
     return res_vector
 
 

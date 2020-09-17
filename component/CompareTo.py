@@ -1,7 +1,7 @@
 import json
 import component.averageScore as avg
 import Usercomponent.difficultMain as diff
-
+# 同类型比较
 return_dict = {}
 resultdict = {'字符串': [], '排序算法': [], '线性表': [], '数字操作': [], '查找算法': [], '树结构': [], '数组': [], '图结构': []}
 avg_dict = {'字符串': 0, '排序算法': 0, '线性表': 0, '数字操作': 0, '查找算法': 0, '树结构': 0, '数组': 0, '图结构': 0}

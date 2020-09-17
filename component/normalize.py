@@ -8,3 +8,4 @@ def min_max_normalize(dict_before):
             val = round(100 * (val - min_value) / max_sub, 2)
         dict_after[key] = val
     return dict_after
+# 标准化

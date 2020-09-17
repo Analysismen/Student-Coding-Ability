@@ -1,5 +1,5 @@
 import json
-
+# 平均分
 times = [0] * 3000
 scores = [0] * 3000
 
